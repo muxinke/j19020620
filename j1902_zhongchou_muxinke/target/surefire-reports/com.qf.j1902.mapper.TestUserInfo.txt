@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.qf.j1902.mapper.TestUserInfo
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.244 s - in com.qf.j1902.mapper.TestUserInfo

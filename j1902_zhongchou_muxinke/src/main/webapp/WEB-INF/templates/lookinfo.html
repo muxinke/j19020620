@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>驳回原因</title>
+    <style>
+        #div1{
+            width: 500px;
+            height:100px;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h4>请阅读您的驳回原因,并再次重新提交</h4>
+<div id="div1" th:text="${info}"></div>
+<button onclick="tijiao()">重新提交</button>
+<button onclick="callback()">返回会员页面</button>
+</body>
+<script>
+    function tijiao() {
+        window.location.href="accttype";
+    }
+    function callback() {
+        window.location.href="member";
+    }
+</script>
+</html>

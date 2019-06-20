@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <title>用户信息</title>
+</head>
+<body>
+
+<form role="form" style="margin-top:20px;" action="indentifySyccess" method="post">
+    <div class="form-group">
+        <label for="id">用户id</label>
+        <input th:placeholder="${single_userinfo.id}" type="text" class="form-control" id="id"  readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="zhanghu">用户账号</label>
+        <input th:value="${single_userinfo.zhanghu}" type="text" class="form-control" id="zhanghu"  name="zhanghu" readonly="readonly" >
+    </div>
+    <div class="form-group">
+        <label for="email">用户邮箱</label>
+        <input th:placeholder="${single_userinfo.email}" type="text" class="form-control" id="email"readonly="readonly" >
+    </div>
+    <div class="form-group">
+        <label for="realname">真实名称</label>
+        <input  th:placeholder="${single_userinfo.username}" type="text" class="form-control" id="realname"readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="cardnum">身份证号码</label>
+        <input th:placeholder="${single_userinfo.idcard}" type="text" class="form-control" id="cardnum"readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="tel">电话号码</label>
+        <input th:placeholder="${single_userinfo.phoneNumber}" type="text" class="form-control" id="tel"readonly="readonly" >
+    </div>
+    <div class="form-group">
+        <label for="photo">手持照片</label>
+        <img th:src="@{${single_userinfo.userImg}}" id="photo"  src="">
+    </div>
+    <div class="form-group">
+        <label for="zhType">账户类型</label>
+        <input th:placeholder="${single_userinfo.zhType}" type="text" class="form-control" id="zhType" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="jsType">角色类型</label>
+        <input th:placeholder="${single_userinfo.jsType}" type="text" class="form-control" id="jsType"readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="view">审核意见</label>
+        <input type="text" class="form-control" id="view" name="idea" th:placeholder="${ideatishi}">
+    </div>
+    <div class="form-group">
+        <label for="jieguo">同意</label>
+        <input type="radio" class="form-control" name="result" id="jieguo" checked="true" value="true">
+        <label for="jieguo1">拒绝</label>
+        <input type="radio" class="form-control" name="result" id="jieguo1" value="false">
+    </div>
+    <input type="submit"  class="btn btn-success" value="提交" >
+</form>
+</body>
+</html>

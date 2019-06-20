@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.HuiBaoMapper">
+    <resultMap id="huibaomap" type="com.qf.j1902.pojo.HuiBao">
+      <!--  private  int hid;
+        private  String htype;
+        private String money;
+        private String neirong;
+        private  String himg;
+        private String hcount;
+        private  String isxiangou;
+        private  String xiangoucount;
+        private String yunfei;
+        private String fapiao;
+        private String htime;
+        private  int pid;-->
+        <id property="hid" column="hid"></id>
+        <result property="htype" column="htype"></result>
+        <result property="money" column="money"></result>
+        <result property="neirong" column="neirong"></result>
+        <result property="himg" column="himg"></result>
+        <result property="isxiangou" column="isxiangou"></result>
+        <result property="xiangoucount" column="xiangoucount"></result>
+        <result property="yunfei" column="yunfei"></result>
+        <result property="fapiao" column="fapiao"></result>
+        <result property="htime" column="htime"></result>
+        <result property="pid" column="pid"></result>
+    </resultMap>
+    <insert id="add">
+        INSERT  huibao (htype,money,neirong,himg,isxiangou,xiangoucount,yunfei,fapiao,htime,pid,hcount)
+        VALUES (#{htype},#{money},#{neirong},#{himg},#{isxiangou},#{xiangoucount},#{yunfei},#{fapiao},#{htime},#{pid},#{hcount})
+    </insert>
+    <select id="query" resultMap="huibaomap">
+        SELECT  * FROM huibao WHERE pid=#{pid};
+    </select>
+</mapper>

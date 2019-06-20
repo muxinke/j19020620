@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        #footer {
+            padding: 15px 0;
+            background: #fff;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+        #topcontrol {
+            color: #fff;
+            z-index: 99;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            background: #222;
+            position: relative;
+            right: 14px !important;
+            bottom: 11px !important;
+            border-radius: 3px !important;
+        }
+
+        #topcontrol:after {
+            /*top: -2px;*/
+            left: 8.5px;
+            content: "\f106";
+            position: absolute;
+            text-align: center;
+            font-family: FontAwesome;
+        }
+
+        #topcontrol:hover {
+            color: #fff;
+            background: #18ba9b;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .label-type, .label-status, .label-order {
+            background-color: #fff;
+            color: #f60;
+            padding : 5px;
+            border: 1px #f60 solid;
+        }
+        #typeList  :not(:first-child) {
+            margin-top:20px;
+        }
+        .label-txt {
+            margin:10px 10px;
+            border:1px solid #ddd;
+            padding : 4px;
+            font-size:14px;
+        }
+        .panel {
+            border-radius:0;
+        }
+        #input11{
+            display: none;
+        }
+        #input22{
+            display: none;
+        }
+        .progress-bar-default {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/indexs" style="font-size:32px;">千锋-创意产品众筹平台</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse" style="float:right;">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user" th:text="${session.zhanghu}"></i><!-- 张三--><span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="members"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/backIndex"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="container theme-showcase" role="main">
+
+
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="panel panel-default" >
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <blockquote style="border-left: 5px solid #f60;color:#f60;padding: 0 0 0 20px;">
+                                        <h1>项目审核</h1>
+                                    </blockquote>
+                                </div>
+                                <div class="col-md-12 column">
+                                    <div class="page-header" style="    border-bottom-style: dashed;">
+                                        <h3>
+                                            项目信息
+                                        </h3>
+                                    </div>
+                                    <form class="form-horizontal" action="start-step-2s" >
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">分类信息</label>
+                                            <div class="col-sm-10" >
+
+                                                <label class="radio-inline">
+                                                    <input type="text" th:value="${projectInfo_xq.pType}" name="flxx">
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">标签</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="biaoqian" th:value="${projectInfo_xq.tag}" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">项目名称</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="xmname" th:text="${projectInfo_xq.pname}" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">一句话简介</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" th:text="${projectInfo_xq.pjianjie}"  name="yijianjie" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">筹资金额（元）</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="czprice" id="czprice" th:value="${projectInfo_xq.jine}" class="form-control" style="width:100px;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">筹资天数（天）</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="czday" id="czday" th:value="${projectInfo_xq.days}" class="form-control"style="width:100px;" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">项目头图</label>
+                                            <div class="col-sm-10"><!--正则判断-->
+                                                <img src="img/pic.jpg" th:src="@{${projectInfo_xq.touimg}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">项目详情</label>
+
+                                            <div class="col-sm-10">
+                                                <img src="img/pic.jpg" th:src="@{${projectInfo_xq.pimg}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 column">
+                                            <div class="page-header" style="    border-bottom-style: dashed;">
+                                                <h3>
+                                                    发起人信息
+                                                </h3>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">自我介绍</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="ziwojj" th:value="${projectInfo_xq.myself}"  class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">详细自我介绍</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" th:text="${projectInfo_xq.xqmyself}"  name="ziwoxj"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">联系电话</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="tel"  th:value="${projectInfo_xq.number}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">客服电话</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="kefutel" th:value="${projectInfo_xq.kefunumber}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">驳回意见</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control"  id="xmyijian"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer" style="text-align:center;">
+                                            <button type="button" class="btn  btn-tongyi btn-lg" th:id="${projectInfo_xq.pid}">同意</button>
+                                            <button type="button" class="btn  btn-butongyi btn-lg" th:id="${projectInfo_xq.pid}">不同意</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="margin-top:20px;">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div id="footer">
+                <div class="footerNav">
+                    <a rel="nofollow" href="http://www.layoutit.cn">关于我们</a> | <a rel="nofollow" href="http://www.layoutit.cn">服务条款</a> | <a rel="nofollow" href="http://www.layoutit.cn">免责声明</a> | <a rel="nofollow" href="http://www.layoutit.cn">网站地图</a> | <a rel="nofollow" href="http://www.layoutit.cn">联系我们</a>
+                </div>
+                <div class="copyRight">
+                    Copyright ?2017-2017layoutit.cn 版权所有
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div> <!-- /container -->
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+<script src="script/back-to-top.js"></script>
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show');
+    })
+
+    $("form .btn-butongyi").click(function () {
+        var pid= $(this).attr("id");
+        var yijian= $("#xmyijian").val();
+        window.location="project_butongyi?pid="+pid+"&yijian="+yijian;
+    })
+    $("form .btn-tongyi").click(function () {
+        var pid= $(this).attr("id")
+        /*var xmyijian= $("#xmyijian").val();*/
+        window.location="project_tongyi?pid="+pid;
+    })
+</script>
+</body>
+</html>

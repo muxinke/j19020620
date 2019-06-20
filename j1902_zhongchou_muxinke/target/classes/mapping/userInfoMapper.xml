@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.UserInfoMapper">
+    <resultMap id="userinfoMap" type="com.qf.j1902.pojo.UserInfo">
+       <!-- private int id;
+        private  String zhanghu;
+        private  String password;
+        private  String email;
+        private  String username;
+        private  String idcard;
+        private  String phoneNumber;
+        private String  userImg;
+        private  String zhType;
+        private  String jsType;-->
+        <id property="id" column="id"></id>
+        <result property="zhanghu" column="zhanghu"></result>
+        <result property="password" column="password"></result>
+        <result property="email" column="email"></result>
+        <result property="username" column="username"></result>
+        <result property="idcard" column="idcard"></result>
+        <result property="phoneNumber" column="phoneNumber"></result>
+        <result property="userImg" column="userImg"></result>
+        <result property="zhType" column="zhType"></result>
+        <result property="jsType" column="jsType"></result>
+       
+    </resultMap>
+    <select id="findByjsType" resultMap="userinfoMap">
+        SELECT  * FROM userinfo WHERE jstype=#{jstype};
+    </select>
+   <insert id="insert">
+       INSERT
+       userinfo
+       (zhanghu,password,email,jsType)
+       VALUES (#{zhanghu},#{password},#{email},#{jstype})
+   </insert>
+    <select id="findAll" resultMap="userinfoMap">
+        SELECT  * FROM userinfo;
+    </select>
+    <select id="selectByid" resultMap="userinfoMap">
+        SELECT  * FROM userinfo WHERE id=#{id};
+    </select>
+    <update id="update">
+        UPDATE userinfo SET zhanghu=#{zhanghu},username=#{username},email=#{email}
+        WHERE id=#{id}
+    </update>
+    <insert id="addUser">
+       INSERT
+       userinfo
+       (zhanghu,password,username,email)
+       VALUES (#{zhanghu},#{password},#{username},#{email})
+    </insert>
+    <delete id="delete" parameterType="int">
+        DELETE  FROM userinfo WHERE id=#{id};
+    </delete>
+    <select id="query" resultMap="userinfoMap">
+        SELECT  * FROM userinfo
+        <where>
+                zhanghu LIKE "%${query}%" OR username LIKE "%${query}%" OR email LIKE "%${query}%"
+        </where>
+    </select>
+    <select id="selectByZhanghu" resultMap="userinfoMap">
+        SELECT * FROM userinfo WHERE zhanghu=#{zhanghu}
+    </select>
+    <update id="updateUserByIndentify" parameterType="com.qf.j1902.pojo.UserInfo">
+         UPDATE userinfo SET username=#{username}, idcard=#{idcard},phoneNumber=#{phoneNumber},
+         userImg=#{userImg},zhType=#{zhType},status=#{status} WHERE zhanghu=#{zhanghu}
+    </update>
+    <select id="queryRows" parameterType="string" resultType="int">
+        SELECT count(*) FROM userinfo GROUP BY status HAVING status=#{status}
+    </select>
+    <select id="selectByStatus" resultMap="userinfoMap">
+        SELECT * FROM userinfo WHERE status=#{status} limit #{offset},#{pagesize}
+    </select>
+    <update id="updateUserByzhanghu">
+        UPDATE userinfo SET status=#{status},suggestion=#{suggestion} WHERE zhanghu=#{zhanghu}
+    </update>
+</mapper>

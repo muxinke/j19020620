@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.ProjectInfoMapper">
+    <resultMap id="pmap" type="com.qf.j1902.pojo.ProjectInfo">
+        <id property="pid" column="pid"></id>
+        <result property="pType" column="pType"></result>
+        <result property="tag" column="tag"></result>
+        <result property="pname" column="pname"></result>
+        <result property="pjianjie" column="pjianjie"></result>
+        <result property="jine" column="jine"></result>
+        <result property="days" column="days"></result>
+        <result property="touimg" column="touimg"></result>
+        <result property="pimg" column="pimg"></result>
+        <result property="myself" column="myself"></result>
+        <result property="xqmyself" column="xqmyself"></result>
+        <result property="number" column="number"></result>
+        <result property="kefunumber" column="kefunumber"></result>
+        <result property="zhuangtai" column="zhuangtai"></result>
+        <result property="id" column="id"></result>
+        <result property="sendTime" column="sendTime"></result>
+        <result property="stopTime" column="stopTime"></result>
+
+    </resultMap>
+    <insert id="add">
+    insert projectinfo (pType,tag,pname,pjianjie,jine,days,touimg,pimg,myself,xqmyself,number,kefunumber,zhuangtai,id,sendTime,stopTime)
+    values(#{pType},#{tag},#{pname},#{pjianjie},#{jine},#{days},#{touimg},#{pimg},#{myself},#{xqmyself},#{number},#{kefunumber},#{zhuangtai},#{id},#{sendTime},#{stopTime})
+    </insert>
+    <select id="select_jilu" resultMap="pmap">
+        SELECT * FROM projectinfo WHERE id=#{id} AND zhuangtai=#{zhuangtai}
+    </select>
+    <update id="update_jilu">
+        update projectinfo set pType=#{pType},tag=#{tag},pname=#{pname},pjianjie=#{pjianjie},jine=#{jine},days=#{days},touimg=#{touimg},pimg=#{pimg},
+        myself=#{myself},xqmyself=#{xqmyself},number=#{number},kefunumber=#{kefunumber},zhuangtai=#{zhuangtai},id=#{id},sendTime=#{sendTime},stopTime=#{stopTime}  where pid=#{pid};
+    </update>
+    <update id="add_caogao">
+        UPDATE projectinfo SET yifubaozhanghu=#{yifubaozhanghu},farenidcard=#{farenidcard},zhuangtai=#{zhuangtai} WHERE pid=#{pid}
+    </update>
+    <update id="updata_zhuangtai_2">
+        UPDATE projectinfo SET zhuangtai=#{zhuangtai} WHERE pid=#{pid}
+    </update>
+    <select id="queryByzhuangtai" resultMap="pmap">
+        SELECT * FROM projectinfo WHERE zhuangtai=#{zhuangtai}
+    </select>
+    <select id="selectBypid" resultMap="pmap">
+        SELECT * FROM projectinfo WHERE pid=#{pid}
+    </select>
+    <update id="update_shenpiBypid">
+        UPDATE projectinfo SET zhuangtai=#{zhuangtai} WHERE pid=#{pid}
+    </update>
+    <update id="add_shenpi" parameterType="com.qf.j1902.pojo.ProjectInfo">
+        UPDATE projectinfo SET zhuangtai=#{zhuangtai},yijian=#{yijian} WHERE pid=#{pid}
+    </update>
+</mapper>
